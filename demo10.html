@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lifecrycle</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return {
+                message: 'test',
+                name: 'title',
+                event: 'click'
+            }
+        },
+        methods: {
+            handleItemClick(){
+                console.log('handleItemClick');
+            },
+            handleButton(e){
+                console.log('handleButton');
+            }
+        },
+        template: `
+        <h2 
+            :[name]="message"
+            @[event]="handleItemClick"
+        >{{message}}</h2>
+
+        <form action="https://www.baidu.com" @click.prevent="handleButton">
+            <button type="submit">submit</button>
+        </form>
+        `
+    })
+    const vm = app.mount("#app")
+    
+    // :xxx -> v-bind:xxx
+    // @ -> v-on:
+    // @click.prevent
+</script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lifecrycle</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return {
+                message: 'test'
+            }
+        },
+        methods: {
+            handleItemClick(){
+                this.message = this.message == 'test' ? 'AAAA' : 'test'
+            }
+        },
+        mounted(){
+            console.log('mounted');
+        },
+        beforeCreate(){
+            console.log('beforeCreate');
+        },
+        created(){
+            console.log('created');
+        },
+        beforeMount(){
+            console.log('beforeMount');
+        },
+        beforeUpdate(){
+            console.log('beforeUpdate');
+            console.log(document.getElementById('app').innerHTML);
+        },
+        updated(){
+            console.log('updated');
+            console.log(document.getElementById('app').innerHTML);
+        },
+       beforeUnmount(){
+           console.log('beforeUnmount');
+           console.log(document.getElementById('app').innerHTML);
+       }, 
+       unmounted(){
+           console.log('unmounted');
+           console.log(document.getElementById('app').innerHTML);
+       },
+        template: "<h2 v-on:click='handleItemClick'>{{message}}</h2>"
+    })
+    const vm = app.mount("#app")
+    // app.unmount()
+</script>
+</html>
