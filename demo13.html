@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lifecrycle</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return {
+                message: 'test',
+                price: 10,
+                count: 2,
+                newTotal: 20
+            }
+        },
+        watch: {
+            count(current, prev){
+                // console.log('count changed');
+                // console.log('current: ' + current);
+                // console.log('prev: ' + prev);
+                this.newTotal = this.price * current;
+            }
+        },
+        computed: {
+            total(){
+                // return Date.now();
+                return this.price * this.count;
+            }
+        },
+        methods: {
+            getTotal(){
+                console.log('run...');
+                return Date.now();
+                return  this.price * this.count;
+            },
+            add(){
+                this.count++;
+            }
+        },
+        template: `
+        <h2>{{message}}</h2>
+        <h2>total={{newTotal}}</h2>
+        <h2>property total={{total}}</h2>
+        <h2>method total={{getTotal()}}</h2>
+        <button @click="add">Add</button>
+        `
+    })
+    const vm = app.mount("#app")
+    //vm.message=Date.now()
+    //vm.price=55
+</script>
+</html>

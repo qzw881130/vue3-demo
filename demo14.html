@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lifecrycle</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data(){
+            return {
+                classString: 'red',
+                classObject:{red: !true, background: true},
+                classArray: ['green', 'background', {red: true}]
+            }
+        },
+        template: `
+        <h2 :class="classObject">test</h2>
+        <h2 :class="classArray">test</h2>
+        `
+    })
+    const vm = app.mount("#app")
+</script>
+<style>
+    .red{color: red !important;}
+    .green{color: green;}
+    .background{background-color: rgb(194, 188, 188);}
+</style>
+</html>
