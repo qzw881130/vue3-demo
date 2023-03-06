@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo20</title>
+    <script src="https://unpkg.com/vue@next" ></script>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    const app=Vue.createApp({ 
+    data(){
+        return{
+            count:0
+        }
+    },
+    methods:{
+        addClick(){
+            // this.count ++;
+            console.log('addClick');
+        },
+        handleBtnClick1(){
+            console.log('handleBtnClick1');
+        }
+    },
+    //prevent capture once passive
+    template:`
+        <div @click.self="handleBtnClick1">
+            我是最外层DIV, click me
+            <div>目前已点佳丽数量{{count}}.</div>
+            <button @click.stop="addClick()">增加一位佳丽 stop</button>
+            <button @click="addClick()">增加一位佳丽 no stop</button>
+        </div>
+        
+        <div @click="handleBtnClick1">
+            我是最外层DIV, click me bubble
+            <div>目前已点佳丽数量{{count}}.</div>
+            <button @click.stop="addClick()">增加一位佳丽 stop</button>
+            <button @click="addClick()">增加一位佳丽 no stop</button>
+        </div>
+
+        <div @click.capture="handleBtnClick1">
+            我是最外层DIV, click me capture
+            <div>目前已点佳丽数量{{count}}.</div>
+            <button @click.stop="addClick()">增加一位佳丽 stop</button>
+            <button @click="addClick()">增加一位佳丽 no stop</button>
+        </div>
+
+        <div>
+            <button @click.once="addClick()">增加一位佳丽 once</button>
+        </div>
+        ` 
+    }) 
+    const vm=app.mount("#app")
+
+</script>
+
+</html>
